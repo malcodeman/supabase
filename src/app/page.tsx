@@ -1,10 +1,10 @@
+"use client";
 import { redirect } from "next/navigation";
-import { createClient } from "@/app/utils/supabase/server";
+import { createClient } from "@/app/utils/supabase/client";
 import { getRedirectUrl } from "@/app/utils/supabase/getRedirectUrl";
 
 export default function Home() {
   const login = async () => {
-    "use server";
     const supabase = createClient();
     const { data } = await supabase.auth.signInWithOAuth({
       options: {
