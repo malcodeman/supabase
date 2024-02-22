@@ -7,15 +7,18 @@ export async function GET(request: Request) {
 
   if (code) {
     const supabase = createClient();
-    const { error } = await supabase.auth.exchangeCodeForSession(code);
 
-    if (error) {
-      return Response.json({ error });
-    }
+    return Response.json({ supabase });
 
-    if (!error) {
-      return NextResponse.redirect(`${origin}/dashboard`);
-    }
+    // const { error } = await supabase.auth.exchangeCodeForSession(code);
+
+    // if (error) {
+    //   return Response.json({ error });
+    // }
+
+    // if (!error) {
+    //   return NextResponse.redirect(`${origin}/dashboard`);
+    // }
   }
 
   return NextResponse.redirect(`${origin}/auth/auth-code-error`);
