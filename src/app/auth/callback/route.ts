@@ -7,9 +7,13 @@ export async function GET(request: Request) {
 
   if (code) {
     const supabase = createClient();
-    const { data, error } = await supabase.auth.exchangeCodeForSession(code);
+    try {
+      const { data, error } = await supabase.auth.exchangeCodeForSession(code);
 
-    return Response.json({ data, error });
+      return Response.json({ data, error });
+    } catch (error) {
+      return Response.json({ error });
+    }
 
     // if (!error) {
     //   return NextResponse.redirect(`${origin}/dashboard`);
