@@ -10,14 +10,14 @@ export async function GET(request: Request) {
     try {
       const { data, error } = await supabase.auth.exchangeCodeForSession(code);
 
+      if (!error) {
+        return NextResponse.redirect(`${origin}/dashboard`);
+      }
+
       return Response.json({ data, error });
     } catch (error) {
       return Response.json({ error });
     }
-
-    // if (!error) {
-    //   return NextResponse.redirect(`${origin}/dashboard`);
-    // }
   }
 
   return NextResponse.redirect(`${origin}/auth/auth-code-error`);
