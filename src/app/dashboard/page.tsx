@@ -8,6 +8,9 @@ export default async function Dashboard() {
     <div>
       Dashboard
       <h1>Hi {user.data.user?.email}</h1>
+      <form action="/auth/signout" method="post">
+        <button type="submit">Sign Out</button>
+      </form>
     </div>
   );
 }
