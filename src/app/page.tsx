@@ -6,14 +6,16 @@ import { getRedirectUrl } from "@/app/utils/supabase/getRedirectUrl";
 export default function Home() {
   const login = async () => {
     const supabase = createClient();
-    await supabase.auth.signInWithOAuth({
+    const { data } = await supabase.auth.signInWithOAuth({
       options: {
         redirectTo: getRedirectUrl(),
       },
       provider: "github",
     });
 
-    redirect("/dashboard");
+    if (data.url) {
+      redirect(data.url);
+    }
   };
 
   return (
