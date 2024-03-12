@@ -1,4 +1,5 @@
 import { createClient } from "@/app/utils/supabase/server";
+import { signOut } from "@/app/actions";
 
 export default async function Dashboard() {
   const supabase = createClient();
@@ -8,8 +9,10 @@ export default async function Dashboard() {
     <div>
       Dashboard
       <h1>Hi {user.data.user?.email}</h1>
-      <form action="/auth/signout" method="post">
-        <button type="submit">Sign Out</button>
+      <form>
+        <button formAction={signOut} type="submit">
+          Sign Out
+        </button>
       </form>
     </div>
   );
