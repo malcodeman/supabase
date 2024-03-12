@@ -11,14 +11,10 @@ export function createClient() {
         return cookieStore.get(name)?.value;
       },
       set(name: string, value: string, options: CookieOptions) {
-        try {
-          cookieStore.set({ name, value, ...options });
-        } catch (error) {}
+        cookieStore.set({ name, value, ...options });
       },
       remove(name: string, options: CookieOptions) {
-        try {
-          cookieStore.set({ name, value: "", ...options });
-        } catch (error) {}
+        cookieStore.set({ name, value: "", ...options });
       },
     },
   });
